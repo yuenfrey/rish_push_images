@@ -3,18 +3,18 @@
 # 用途：从阿里云 ACR 拉取已同步的镜像，重新标记为内网私有仓库地址并推送到私服
 # 使用方法：
 #   chmod +x pull-from-aliyun.sh
-#   ./pull-from-aliyun.sh <你的阿里云命名空间> [阿里云地域代码] [内网私服地址]
+#   ./pull-from-aliyun.sh <你的阿里云命名空间> [阿里云专属域名] [内网私服地址]
 # 示例：
-#   ./pull-from-aliyun.sh my-k8s-rook cn-hangzhou registry.local/ceph
+#   ./pull-from-aliyun.sh my-k8s-rook crpi-152y3mtli6krf23o.cn-hangzhou.personal.cr.aliyuncs.com registry.local/ceph
 # ==============================================================================
 
 set -e
 
 ALIYUN_NAMESPACE="${1:-my-k8s-rook}"
-ALIYUN_REGION="${2:-cn-hangzhou}"
+ALIYUN_REGISTRY="${2:-crpi-152y3mtli6krf23o.cn-hangzhou.personal.cr.aliyuncs.com}"
 LOCAL_REGISTRY="${3:-registry.local/ceph}"
 
-ALIYUN_PREFIX="registry.${ALIYUN_REGION}.aliyuncs.com/${ALIYUN_NAMESPACE}"
+ALIYUN_PREFIX="${ALIYUN_REGISTRY}/${ALIYUN_NAMESPACE}"
 
 # 映射定义：阿里云镜像名 -> 内网私服完整路径
 declare -A IMAGE_MAP=(
