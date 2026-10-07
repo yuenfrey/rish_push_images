@@ -1,4 +1,4 @@
-# K8s & Rook-Ceph 离线镜像转存指南 (GitHub Actions -> 阿里云 ACR)
+# IBM Spectrum Scale CSI 离线镜像转存指南 (GitHub Actions -> 阿里云 ACR)
 
 已为您在系统默认浏览器中打开两个配置页面：
 1. **[阿里云容器镜像服务 (ACR)](https://cr.console.aliyun.com/)**
@@ -54,7 +54,7 @@
 ### 第四步：一键运行同步工作流
 
 1. 点击 GitHub 仓库顶部的 **Actions** 标签。
-2. 在左侧选择 **“Sync K8s & Rook-Ceph Images to Aliyun ACR”**。
+2. 在左侧选择 **“Sync IBM Spectrum Scale CSI Images to Aliyun ACR”**。
 3. 点击右侧 **“Run workflow”** 下拉菜单：
    - 输入你的阿里云命名空间（如 `my-k8s-rook`）。
    - 输入地域代码（默认 `cn-hangzhou`）。
@@ -70,7 +70,7 @@
 ```bash
 chmod +x pull-from-aliyun.sh
 
-# 用法：./pull-from-aliyun.sh <命名空间> [地域代码] [内网私服地址]
-./pull-from-aliyun.sh my-k8s-rook cn-hangzhou registry.local/ceph
+# 用法：./pull-from-aliyun.sh <命名空间> [阿里云专属域名] [内网私服地址]
+./pull-from-aliyun.sh my-k8s-rook crpi-152y3mtli6krf23o.cn-hangzhou.personal.cr.aliyuncs.com registry.local/ibm-spectrum-scale
 ```
 脚本会自动拉取阿里云镜像并批量标记、推送到你的离线内网 Harbor。

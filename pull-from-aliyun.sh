@@ -12,20 +12,20 @@ set -e
 
 ALIYUN_NAMESPACE="${1:-my-k8s-rook}"
 ALIYUN_REGISTRY="${2:-crpi-152y3mtli6krf23o.cn-hangzhou.personal.cr.aliyuncs.com}"
-LOCAL_REGISTRY="${3:-registry.local/ceph}"
+LOCAL_REGISTRY="${3:-registry.local/ibm-spectrum-scale}"
 
 ALIYUN_PREFIX="${ALIYUN_REGISTRY}/${ALIYUN_NAMESPACE}"
 
 # 映射定义：阿里云镜像名 -> 内网私服完整路径
 declare -A IMAGE_MAP=(
-  ["csi-provisioner:v4.0.1"]="${LOCAL_REGISTRY}/sig-storage/csi-provisioner:v4.0.1"
-  ["csi-attacher:v4.5.1"]="${LOCAL_REGISTRY}/sig-storage/csi-attacher:v4.5.1"
-  ["csi-snapshotter:v7.0.2"]="${LOCAL_REGISTRY}/sig-storage/csi-snapshotter:v7.0.2"
-  ["csi-resizer:v1.10.1"]="${LOCAL_REGISTRY}/sig-storage/csi-resizer:v1.10.1"
-  ["csi-node-driver-registrar:v2.10.1"]="${LOCAL_REGISTRY}/sig-storage/csi-node-driver-registrar:v2.10.1"
-  ["cephcsi:v3.11.0"]="${LOCAL_REGISTRY}/cephcsi/cephcsi:v3.11.0"
-  ["ceph:v18.2.4"]="${LOCAL_REGISTRY}/ceph/ceph:v18.2.4"
-  ["ceph:v1.14.9"]="${LOCAL_REGISTRY}/rook/ceph:v1.14.9"
+  ["ibm-spectrum-scale-csi-operator:v3.1.1"]="${LOCAL_REGISTRY}/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator:v3.1.1"
+  ["ibm-spectrum-scale-csi-driver:v3.1.1"]="${LOCAL_REGISTRY}/ibm-spectrum-scale/ibm-spectrum-scale-csi-driver:v3.1.1"
+  ["csi-snapshotter:v8.5.0"]="${LOCAL_REGISTRY}/sig-storage/csi-snapshotter:v8.5.0"
+  ["csi-attacher:v4.11.0"]="${LOCAL_REGISTRY}/sig-storage/csi-attacher:v4.11.0"
+  ["csi-provisioner:v6.2.0"]="${LOCAL_REGISTRY}/sig-storage/csi-provisioner:v6.2.0"
+  ["livenessprobe:v2.18.0"]="${LOCAL_REGISTRY}/sig-storage/livenessprobe:v2.18.0"
+  ["csi-node-driver-registrar:v2.16.0"]="${LOCAL_REGISTRY}/sig-storage/csi-node-driver-registrar:v2.16.0"
+  ["csi-resizer:v2.0.0"]="${LOCAL_REGISTRY}/sig-storage/csi-resizer:v2.0.0"
 )
 
 echo "=================================================="
